@@ -1,0 +1,7 @@
+<view>
+    <view class="box">
+        <view style="height:800rpx;padding-top:10px;margin-left:10px">
+            <ec-canvas ec="{{ecPie}}"></ec-canvas>
+        </view>
+    </view>
+</view>

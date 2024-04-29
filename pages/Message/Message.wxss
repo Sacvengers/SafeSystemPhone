@@ -1,0 +1,44 @@
+/* pages/message/message.wxss */
+page {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100vh;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 112rpx);
+}
+
+.t-navbar__content {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    --td-navbar-right: 94px;
+    --td-navbar-capsule-height: 20px !important;
+    --td-navbar-height: 20px !important;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.t-navbar__placeholder{
+    height: 0!important;
+}
+
+
+.message-list {
+    margin-top: 10px;
+    height: 0;
+    flex-grow: 1;
+}
+
+.avatar {
+    border-radius: 50% !important;
+}
+
+.content > view {
+    width: 560rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content.unread > view {
+    width: 510rpx;
+}
+

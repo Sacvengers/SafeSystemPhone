@@ -1,0 +1,16 @@
+{
+  "name": "safetysystemphone",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "dependencies": {
+    "miniprogram-sm-crypto": "^0.3.13",
+    "tdesign-miniprogram": "^1.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

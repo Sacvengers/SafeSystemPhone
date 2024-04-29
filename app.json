@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/Message/Message",
+    "pages/AIChat/AIChat",
+    "pages/dataShow/dataShow"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "锦衣卫",
+    "navigationBarBackgroundColor": "#F6F6F6"
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

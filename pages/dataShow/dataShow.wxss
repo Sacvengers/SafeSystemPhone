@@ -1,0 +1,13 @@
+.box {
+    width: 400px;
+    height: 1600rpx;
+    margin-left: 15px;
+    margin-top: 15px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    background: rgb(255, 255, 255);
+}
+
+page {
+    background-color: #f6f6f6
+}
