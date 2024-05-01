@@ -7,7 +7,14 @@ const mockData = [
         name: 'ChatGPT3.5',
         avatar: '/images/mock/chat/chatgpt.png',
         messages: [
-            {messageId: 8, from: 1, content: 'Hello! How can I assist you today?', time: Date.now(), illgal: true, read: true},
+            {
+                messageId: 8,
+                from: 1,
+                content: 'Hello! How can I assist you today?',
+                time: Date.now(),
+                illgal: true,
+                read: true
+            },
         ]
     },
     {
@@ -15,7 +22,14 @@ const mockData = [
         name: 'llama2',
         avatar: '/images/mock/chat/llama2.png',
         messages: [
-            {messageId: 9, from: 1, content: 'Hello! It\'s a pleasure to assist you. How can I help you today? Do you have a question, or is there a task you\'d like me to assist you with?', time: Date.now(), illgal: true, read: true},
+            {
+                messageId: 9,
+                from: 1,
+                content: 'Hello! It\'s a pleasure to assist you. How can I help you today? Do you have a question, or is there a task you\'d like me to assist you with?',
+                time: Date.now(),
+                illgal: true,
+                read: true
+            },
         ]
     },
     {
@@ -23,22 +37,22 @@ const mockData = [
         name: '通义千问',
         avatar: '/images/mock/chat/tong.png',
         messages: [
-            {messageId: 8, from: 1, content: '你好，我是通义\n' +
-                    '我能理解人类语言、生成内容，是你生活和工作的智能助手。', time: Date.now(), illgal: true, read: true},
+            {
+                messageId: 8, from: 1, content: '你好，我是通义\n' +
+                    '我能理解人类语言、生成内容，是你生活和工作的智能助手。', time: Date.now(), illgal: true, read: true
+            },
         ]
     },
     {
         userId: 4,
         name: '防御模型',
         avatar: '/images/mock/chat/avatar-Kingdom.png',
-        messages: [
-
-        ]
+        messages: []
     },
 ]
 
 // 模拟新增一条消息
-function addNewMessage(userId, from, content) {
+function addNewMessage(userId, from, content, illgal) {
     const index = mockData.map(item => item.userId).indexOf(userId)
     const user = mockData.splice(index, 1)[0]
     mockData.unshift(user)
@@ -46,7 +60,7 @@ function addNewMessage(userId, from, content) {
     mockData.forEach(item => {
         messageId += item.messages.length
     })
-    const message = {messageId, from, content, time: Date.now(), read: from === 0}
+    const message = {messageId, from, content, time: Date.now(), read: from === 0, illgal: illgal}
     user.messages.push(message)
 
     return message
@@ -77,7 +91,7 @@ class MockSocketTask {
             this.onmessage = callback
     }
 
-    send(data, resMsg) {
+    send(data, resMsg, illgal) {
         data = JSON.parse(data)
         if (data.type === 'message') {
             const {userId, content} = data.data
@@ -87,7 +101,7 @@ class MockSocketTask {
             })
             // 模拟3秒后对方回复消息
             delay(3000).then(() => {
-                const message = addNewMessage(userId, 1, resMsg)
+                const message = addNewMessage(userId, 1, resMsg, illgal)
                 this.onmessage(JSON.stringify({type: 'message', data: {userId, message}}))
             })
         }

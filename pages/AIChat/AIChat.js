@@ -119,11 +119,9 @@ Page({
         const {userId, messages, input: content} = this.data
         if (!content)
             return
-        const message = {messageId: null, from: 0, content, time: Date.now(), read: true}
+        const message = {messageId: null, from: 0, content, time: Date.now(), read: true, illgal: false}
         messages.push(message)
-
         this.setData({input: '', messages})
-
         wx.request({
             url: "http://47.120.32.75:8080/model/process_msg",
             method: "POST",
@@ -135,8 +133,10 @@ Page({
                 msg: content,
             },
             success: (res) => {
-                //消息回复
-                socket.send(JSON.stringify({type: 'message', data: {userId, content}}), res.data.data.content)
+                socket.send(JSON.stringify({
+                    type: 'message',
+                    data: {userId, content, illgal: res.data.data.illgal}
+                }), res.data.data.content)
             },
             fail: (error) => {
                 console.log(error);
